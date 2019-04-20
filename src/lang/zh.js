@@ -71,7 +71,7 @@ export default {
     size: '布局大小'
   },
   login: {
-    title: '系统登录',
+    title: '用户轨迹平台',
     logIn: '登录',
     username: '账号',
     password: '密码',

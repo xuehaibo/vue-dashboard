@@ -6,7 +6,7 @@
         <h3 class="title">
           {{ $t('login.title') }}
         </h3>
-        <lang-select class="set-language" />
+        <!-- <lang-select class="set-language" /> -->
       </div>
 
       <el-form-item prop="username">
@@ -50,7 +50,7 @@
         {{ $t('login.logIn') }}
       </el-button>
 
-      <div style="position:relative">
+      <!-- <div style="position:relative">
         <div class="tips">
           <span>{{ $t('login.username') }} : admin</span>
           <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
@@ -65,7 +65,7 @@
         <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
           {{ $t('login.thirdparty') }}
         </el-button>
-      </div>
+      </div> -->
     </el-form>
 
     <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog">
@@ -107,7 +107,8 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [{ required: true, trigger: 'blur'}],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: 'password',
@@ -120,6 +121,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        // console.log(route);
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -164,7 +166,19 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
+          this.loading = true;
+          // console.log(this.loginForm);
+          // return;
+          // $.post('user/login',this.loginForm).then((res)=>{
+          //   this.$store.dispatch('user/login', this.loginForm)
+          //   .then(() => {
+          //     this.$router.push({ path: this.redirect || '/' })
+          //     this.loading = false
+          //   })
+          //   .catch(() => {
+          //     this.loading = false
+          //   })
+          // })
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/' })

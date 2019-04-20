@@ -1,10 +1,13 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function login(username, password) {
   return request({
     url: '/user/login',
     method: 'post',
-    data
+    data: {
+      username,
+      password
+    }
   })
 }
 
@@ -22,12 +25,3 @@ export function logout() {
     method: 'post'
   })
 }
-
-export function search(searchInfo) {
-  return request({
-    url: '/srach',
-    method: 'get',
-    params: searchInfo
-  })
-}
-

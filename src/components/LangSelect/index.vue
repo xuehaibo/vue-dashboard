@@ -21,7 +21,9 @@
 export default {
   computed: {
     language() {
-      return this.$store.getters.language
+      // language = 'zh'
+      // return this.$store.getters.language
+      return 'zh'
     }
   },
   methods: {
